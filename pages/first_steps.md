@@ -3,7 +3,7 @@
 ## Building the Example
 After [installing](installation.md) all needed tools it is time to run the example. Icoprog comes with an example to blink all the LED's. Connect to your RPi, change to the *icoprog* directory and build the bitstream for the example (if it is not built already):
 
-```Bash
+```bash
 make example.bin
 ```
 
@@ -16,7 +16,7 @@ This *make* target is responsible for the following tasks:
 ## Flashing the Example
 Now that the [Bitstream](glossary.md#Bitstream) is available, it is time to flash it to the [FPGA](glossary.md#FPGA):
 
-```Bash
+```bash
 make example_flash
 ```
 
