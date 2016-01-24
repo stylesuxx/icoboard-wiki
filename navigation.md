@@ -2,6 +2,7 @@
 
 [gimmick:theme](spacelab)
 
+[About](pages/index.md)
 [Installation](pages/installation.md)
 [First Steps](pages/first_steps.md)
 [Verilog](pages/verilog.md)
