@@ -34,6 +34,7 @@ A [toolsuite](http://www.clifford.at/icestorm/) by Clifford Wolf and Mathias Las
 ## N
 
 ### Netlist
+A description of the connectivity of an electronic circuit.
 
 ## S
 
@@ -46,6 +47,7 @@ A [toolsuite](http://www.clifford.at/icestorm/) by Clifford Wolf and Mathias Las
 Physical constraints file.
 
 ### Place and Route
+Place and route describes several processes where the [netlist](#netlist) elements are physically placed and mapped to the [FPGA](#FPGA)'s physical resources.
 
 ## R
 
