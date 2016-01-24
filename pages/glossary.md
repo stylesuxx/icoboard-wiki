@@ -3,7 +3,7 @@
 ## B
 
 ### Bitstream
-As the name suggeste, the *Bitstram* is a stream of bits. It describes the configuration data loaded into an [FPGA](#FPGA).
+As the name suggests, the *Bitstram* is a stream of bits. It describes the configuration data loaded into an [FPGA](#FPGA).
 
 ## F
 
