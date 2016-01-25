@@ -21,3 +21,256 @@ make example_flash
 ```
 
 This will invoke [icoprog](glossary.md#icoprog) and flash *example.bin* to the icoBoard. You should now see the three LED's on the board blinking.
+
+## Dissecting the Source
+Let's take a deeper look into the two source files used to build the [Bitstream](glossary.md#Bitstream).
+
+### example.pcf
+The physical constraints file contains the pin mappings to variables:
+```
+set_io clk R9
+set_io led1 C8
+set_io led2 F7
+set_io led3 K9
+```
+
+The *led* variables are mapped to the pins they are connected to. Same goes with clk, which is the [FPGA's](glossary.md#FPGA) clock signal. You can verify and look up the pin identifiers and what they are connected to in the [schematic](http://downloads.amescon.com/icoboard.pdf).
+
+### example.v
+This may be the point where you should go through some [Verilog][glossary.md#Verliog] tutorials first. But let's look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen [Verilog][glossary.md#Verliog] before, so bear with me.
+
+```
+module top (input clk, output reg led1, led2, led3);
+	parameter COUNTER_BITS = 26;
+	reg [COUNTER_BITS-1:0] counter = 0;
+	always @(posedge clk) begin
+		counter <= counter + 1;
+		{led1, led2, led3} <= counter[COUNTER_BITS-1 -: 3] ^ (counter[COUNTER_BITS-1 -: 3] >> 1);
+	end
+endmodule
+```
+
+The firs line seems to define a new module and set the used *IO* pins defined in *example.pcf* as in or output, so *clk* is an input. *led1*, *led2* and *led3* are set as output.
+
+```
+module top (input clk, output reg led1, led2, led3);
+```
+
+The next line seems to initialize a variable called *COUNTER_BITS* with an integer value of 26, and the one after that seems to initialize a register with the name *counter* to an array of length *COUNTER_BITS* and initializes them with **0**. So we have an array capable of holding *26 Bit* which are all zeroed out at the beginning:
+
+```
+	parameter COUNTER_BITS = 26;
+	reg [COUNTER_BITS-1:0] counter = 0;
+```
+
+The next line seems to define a function that is executed every time when a positive edge from the clock is detected and executes everything until *end*.
+
+```
+	always @(posedge clk) begin
+		...
+	end
+```
+Alright, so the part that lets the LED's blink seems to be in the *always* block. The first line is pretty forward, increase the counter by one:
+
+```
+		counter <= counter + 1;
+```
+
+So on every positive edge, our 26 Bit counter is increased by one, lets check out what *counter* contains:
+
+```
+Before 1st positive edge: 00000000000000000000000000
+1st edge:                 00000000000000000000000001
+2st edge:                 00000000000000000000000010
+3rd edge:                 00000000000000000000000011
+4th edge:                 00000000000000000000000100
+...
+67108864th edge:          11111111111111111111111111
+67108865th edge:          00000000000000000000000000
+67108866th edge:          00000000000000000000000001
+...
+```
+
+So the counter will overflow every *67108865th* time back to the initial state.
+
+Good, so the functionality to flash the LED's has to happen in the second line of the *always* block:
+
+```
+		{led1, led2, led3} <= counter[COUNTER_BITS-1 -: 3] ^ (counter[COUNTER_BITS-1 -: 3] >> 1);
+```
+
+This seems to assign the LED's a value from our counter array, let's take a look in detail:
+
+```
+counter[COUNTER_BITS-1 -: 3] ^ (counter[COUNTER_BITS-1 -: 3] >> 1)
+```
+
+For this part we need to know what **^**, **>>** and **[COUNTER_BITS-1 -: 3]** do.
+It is reasonable to assume that **>>** is the *right shift* operator, shifting the *counter* array to the right by one Bit, but in this case it only shifts the first three bits because of *[COUNTER_BITS-1 -: 3]*. Further we can assume, that **^** is the bit wise *xor* operator.
+
+This means:
+```
+1st positive edge:
+original counter: 000 00000000000000000000001
+shifted counter:  000 00000000000000000000000
+xored:            000 00000000000000000000001
+---------------------------------------------
+LED's on: none
+
+2nd positive edge:
+original counter: 000 00000000000000000000010
+shifted counter:  000 00000000000000000000000
+xored:            000 00000000000000000000010
+---------------------------------------------
+LED's on: none
+
+...
+
+8388608th positive edge:
+original counter: 000 11111111111111111111111
+shifted counter:  000 11111111111111111111111
+xored:            000 00000000000000000000000
+---------------------------------------------
+LED's on: none
+
+8388609th positive edge:
+original counter: 001 00000000000000000000000
+shifted counter:  000 00000000000000000000000
+xored:            001 00000000000000000000000
+---------------------------------------------
+LED's on: 3
+
+8388610th positive edge:
+original counter: 001 00000000000000000000001
+shifted counter:  000 00000000000000000000001
+xored:            001 00000000000000000000000
+---------------------------------------------
+LED's on: 3
+
+...
+
+16777216th positive edge:
+original counter: 001 11111111111111111111111
+shifted counter:  000 11111111111111111111111
+xored:            001 00000000000000000000000
+---------------------------------------------
+LED's on: 3
+
+16777217th positive edge:
+original counter: 010 00000000000000000000000
+shifted counter:  001 00000000000000000000000
+xored:            011 00000000000000000000000
+---------------------------------------------
+LED's on: 2+3
+
+...
+
+25165824th positive edge:
+original counter: 010 11111111111111111111111
+shifted counter:  001 11111111111111111111111
+xored:            001 00000000000000000000000
+---------------------------------------------
+LED's on: 2+3
+
+25165825th positive edge:
+original counter: 011 00000000000000000000000
+shifted counter:  001 00000000000000000000000
+xored:            010 00000000000000000000000
+---------------------------------------------
+LED's on: 2
+
+...
+
+33554432th positive edge:
+original counter: 011 11111111111111111111111
+shifted counter:  001 11111111111111111111111
+xored:            010 00000000000000000000000
+---------------------------------------------
+LED's on: 2+3
+
+33554433th positive edge:
+original counter: 100 00000000000000000000000
+shifted counter:  010 00000000000000000000000
+xored:            110 00000000000000000000000
+---------------------------------------------
+LED's on: 1+2
+
+...
+
+41943040th positive edge:
+original counter: 100 11111111111111111111111
+shifted counter:  010 11111111111111111111111
+xored:            110 00000000000000000000000
+---------------------------------------------
+LED's on: 1+2
+
+41943041th positive edge:
+original counter: 101 00000000000000000000000
+shifted counter:  010 00000000000000000000000
+xored:            111 00000000000000000000000
+---------------------------------------------
+LED's on: 1+2+3
+
+...
+
+50331648th positive edge:
+original counter: 101 11111111111111111111111
+shifted counter:  010 11111111111111111111111
+xored:            111 00000000000000000000000
+---------------------------------------------
+LED's on: 1+2+3
+
+50331649th positive edge:
+original counter: 110 00000000000000000000000
+shifted counter:  011 00000000000000000000000
+xored:            101 00000000000000000000000
+---------------------------------------------
+LED's on: 1+3
+
+...
+
+58720256th positive edge:
+original counter: 110 11111111111111111111111
+shifted counter:  011 11111111111111111111111
+xored:            101 00000000000000000000000
+---------------------------------------------
+LED's on: 1+3
+
+58720257th positive edge:
+original counter: 111 00000000000000000000000
+shifted counter:  011 00000000000000000000000
+xored:            100 00000000000000000000000
+---------------------------------------------
+LED's on: 1
+
+...
+
+67108864th positive edge:
+original counter: 111 11111111111111111111111
+shifted counter:  011 11111111111111111111111
+xored:            100 00000000000000000000000
+---------------------------------------------
+LED's on: 1
+
+67108865th positive edge:
+original counter: 000 00000000000000000000000
+shifted counter:  000 00000000000000000000000
+xored:            000 00000000000000000000000
+---------------------------------------------
+LED's on: none
+```
+
+Now it also should be clear what **[COUNTER_BITS-1 -: 3]** does, it "selects" the first three bits and writes them to the LED's. But is this true? Well that is easy to confirm, just flash the example and watch the LED's.
+
+There are basically *eight* different states the example loops through, which makes sense - there are 3 LED's and all different permutations are 2^3 = 8. Each state *8388608 positive edges* long.
+
+```
+State 0: LED's on: none
+State 1: LED's on: 3
+State 2: LED's on: 2+3
+State 3: LED's on: 2
+State 4: LED's on: 1+2
+State 5: LED's on: 1+2+3
+State 6: LED's on: 1+3
+State 7: LED's on: 1
+```
