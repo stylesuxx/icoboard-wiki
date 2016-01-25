@@ -37,7 +37,7 @@ set_io led3 K9
 The *led* variables are mapped to the pins they are connected to. Same goes with clk, which is the [FPGA's](glossary.md#FPGA) clock signal. You can verify and look up the pin identifiers and what they are connected to in the [schematic](http://downloads.amescon.com/icoboard.pdf).
 
 ### example.v
-This may be the point where you should go through some [Verilog][glossary.md#Verliog] tutorials first. But let's look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen [Verilog][glossary.md#Verliog] before, so bear with me.
+This may be the point where you should go through some [Verilog](glossary.md#Verliog) tutorials first. But let's look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen [Verilog](glossary.md#Verliog) before, so bear with me.
 
 ```
 module top (input clk, output reg led1, led2, led3);
@@ -56,7 +56,7 @@ The firs line seems to define a new module and set the used *IO* pins defined in
 module top (input clk, output reg led1, led2, led3);
 ```
 
-The next line seems to initialize a variable called *COUNTER_BITS* with an integer value of 26, and the one after that seems to initialize a register with the name *counter* to an array of length *COUNTER_BITS* and initializes them with **0**. So we have an array capable of holding *26 Bit* which are all zeroed out at the beginning:
+The next line seems to initialize a variable called *COUNTER_BITS* with an integer value of 26, and the one after that seems to initialize a register with the name *counter* to an array of length *COUNTER_BITS* and initializes them with **0**. So we have an array capable of holding *26 bits* which are all zeroed out at the beginning:
 
 ```
 	parameter COUNTER_BITS = 26;
@@ -274,3 +274,9 @@ State 5: LED's on: 1+2+3
 State 6: LED's on: 1+3
 State 7: LED's on: 1
 ```
+
+But *why* do we need *26 bits*? Because three bits are displayed on the LED's, leaving 23 for the count of the duration of a single state, and we all love the number **23**.
+
+This is in fact something you can now easily try for yourself. If you increase the number of bits, each state will hold on for a longer time. To be exact, each state is held for (n-3)^2 positive edges.
+
+Same thing goes with decreasing until a point where the state changes so fast, that you can not follow it with your eye and all LED's seem to be on all the time.
