@@ -14,6 +14,9 @@ File extension for the [Berkley Logic Interchange format](https://www.ece.cmu.ed
 
 ## F
 
+### Flip Flop
+Saves a single bit as long as power is supplied.
+
 ### FPGA
 Field programmable gate array.
 
@@ -30,6 +33,20 @@ A tool from the [icestorm](#icestorm) tool suite to flash a [Bitstream](#Bitstra
 
 ### icestorm
 A [toolsuite](http://www.clifford.at/icestorm/) by Clifford Wolf and Mathias Lasser aimed at documenting the [Bitstream](#Bitstram) of the [iCE40](#iCE40) and providing tools for analyzing and creating [Bitstreams](#Bitstram).
+
+## L
+
+### PLB
+*Programmable Logic Block* consists of eight [logic cells](#Logic_Cell) in the iCE40.
+
+### Logic Cell
+A *logic cell* consists of one [LUT](#LUT) and a [Flip Flop](#Flip_Flop) is a logic cell in the iCE40.
+
+### Logic Gate
+Performs a logical operation on one ore more inputs. Has only one logical output.
+
+### LUT
+Look Up Table, the building block for [logic gates](#Logic_Gate). The LUT's on the iCE40 have four inputs and can therefore store a truth table of size 2^5 = 32.
 
 ## N
 

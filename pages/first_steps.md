@@ -9,9 +9,9 @@ make example.bin
 
 This *make* target is responsible for the following tasks:
 
-* [Synthesis](glossary.md#Synthesis) via [yosys](glossary.md#yosys): Takes *example.v* as input and synthesizes it to *example.[blif](glossary.md#blif)*
-* [Pick and Route](glossary.md#Pick_and_Route) via [arachne-pnr](glossary.md#yosys): Takes *example.blif* and example.[pcf](glossary.md#pcf) and outputs a [Bitstream](glossary.md#Bitstream) in textual representation to *example.txt*
-* Generate [Bitstream](glossary.md#Bitstream) with [icepack](glossary.md): Takes the readable *example.txt* and writes the [Bitstream](glossary.md#Bitstream) to *example.bin*
+* [Synthesis](glossary.md#Synthesis) via [yosys](glossary.md#yosys): Takes *example.v* [Verilog](glossary.md#Verliog) hardware description file as input and synthesizes it to *example.[blif](glossary.md#blif)*
+* [Pick and Route](glossary.md#Pick_and_Route) via [arachne-pnr](glossary.md#yosys): Takes *example.blif* and example.[pcf](glossary.md#pcf) and generates a [Bitstream](glossary.md#Bitstream) in textual representation to *example.txt*, at this point you can still *cat* it and read it.
+* Generate [Bitstream](glossary.md#Bitstream) with [icepack](glossary.md): Takes the readable textual representation of the [Bitstream](glossary.md#Bitstream) (*example.txt*) and writes the [Bitstream](glossary.md#Bitstream) to *example.bin*
 
 ## Flashing the Example
 Now that the [Bitstream](glossary.md#Bitstream) is available, it is time to flash it to the [FPGA](glossary.md#FPGA):
