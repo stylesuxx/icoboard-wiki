@@ -8,3 +8,4 @@
 [Verilog](pages/verilog.md)
 [Glossary](pages/glossary.md)
 [Resources](pages/resources.md)
+[yosysJS](pages/yosys.md)
