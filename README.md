@@ -1,4 +1,2 @@
-# LiXizhi's Personal Website
-
-Runing on Github + Jekyll theme by [Gaohaoyang](https://github.com/Gaohaoyang/gaohaoyang.github.io)**
-
+# icoBoard Wiki
+Head over to the actual [Wiki](http://stylesuxx.github.io/icoboard-wiki) for more information.
