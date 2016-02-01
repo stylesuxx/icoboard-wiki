@@ -1,4 +1,13 @@
-# References
+---
+layout: page
+title: Resources
+comments: false
+permalink: /resources/
+---
+
+* content
+{:toc}
+
 ## Videos
 
 * [EEVblog #496 - What Is An FPGA?](https://www.youtube.com/watch?v=gUsHwi4M4xE)

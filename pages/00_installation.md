@@ -1,5 +1,12 @@
-# Installation
-In order to use the icoBoard and flash a bitstream a couple of tools are required.
+---
+layout: page
+title: Installation
+comments: false
+permalink: /installation/
+---
+
+* content
+{:toc}
 
 ## Toolchain
 The toolchain consist of three major components:

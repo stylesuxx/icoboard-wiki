@@ -1,4 +1,12 @@
-# Verilog
+---
+layout: page
+title: Verilog
+comments: false
+permalink: /verilog/
+---
+
+* content
+{:toc}
 
 ## Resources
 
