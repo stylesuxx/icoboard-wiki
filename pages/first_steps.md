@@ -280,3 +280,38 @@ But *why* do we need *26 bits*? Because three bits are displayed on the LED's, l
 This is in fact something you can now easily try for yourself. If you increase the number of bits, each state will hold on for a longer time. To be exact, each state is held for (n-3)^2 positive edges.
 
 Same thing goes with decreasing until a point where the state changes so fast, that you can not follow it with your eye and all LED's seem to be on all the time.
+
+## Interpreting the graphical representation
+With [yosys](glossary.md#yosys) you have the possibility to show a graphical representation of the design. You can use the [interactive yosys console](yosys.md) to test this.
+
+Create two files:
+
+* *example.v* with the following content:
+  ```
+  module top (input clk, output reg led1, led2, led3);
+    parameter COUNTER_BITS = 26;
+    reg [COUNTER_BITS-1:0] counter = 0;
+    always @(posedge clk) begin
+        counter <= counter + 1;
+        {led1, led2, led3} <= counter[COUNTER_BITS-1 -: 3] ^ (counter[COUNTER_BITS-1 -: 3] >> 1);
+    end
+  endmodule
+  ```
+* *example.ys* with the following content:
+  ```
+  # a simple yosys.js example. run "script example.ys".
+  design -reset
+  read_verilog example.v
+  proc
+  opt
+  show
+  ```
+
+Then run the yosys script:
+```
+script example.ys
+```
+
+This should generate a dot file that looks like this:
+
+![show.dot](http://i.imgur.com/jtCII6T.png)

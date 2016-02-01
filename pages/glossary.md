@@ -14,8 +14,8 @@ File extension for the [Berkley Logic Interchange format](https://www.ece.cmu.ed
 
 ## F
 
-### Flip Flop
 Saves a single bit as long as power is supplied.
+### Flip Flop
 
 ### FPGA
 Field programmable gate array.
@@ -61,7 +61,7 @@ A description of the connectivity of an electronic circuit.
 ## P
 
 ### pcf
-Physical constraints file.
+File extension for *physical constraints file*.
 
 ### Place and Route
 Place and route describes several processes where the [netlist](#netlist) elements are physically placed and mapped to the [FPGA](#FPGA)'s physical resources.
@@ -82,4 +82,4 @@ A Hardware description language.
 ## Y
 
 ### yosys
-Open [Synthesis](#Synthesis) suite by Clifford Wolf on [github](https://github.com/cliffordwolf/yosys).
+Open [Synthesis](#Synthesis) suite by Clifford Wolf on [github](https://github.com/cliffordwolf/yosys) or [the website](http://www.clifford.at/yosys/).
