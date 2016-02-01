@@ -21,8 +21,8 @@ newsourceroot: https://github.com/stylesuxx/icoboard-wiki/new/master
 #duoshuo_shortname: lixizhi
 #duoshuo_url: "http://lixizhi.github.io"
 # disqus.com commenting system. please note that it is exclusive with duoshuo.com
-disqus_shortname: stylesuxx
-disqus_url: "http://lixizhi.github.io"
+disqus_shortname: icoboardwiki
+disqus_url: "http://stylesuxx.github.io/icoboard-wiki/"
 #########################################
 
 # Build settings
