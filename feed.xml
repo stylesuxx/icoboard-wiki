@@ -3,10 +3,10 @@
   <channel>
     <title>icoBoard Wiki</title>
     <description>Xizhi&#39;s Ideas &amp; Blogs</description>
-    <link>/</link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Feb 2016 01:00:39 +0100</pubDate>
-    <lastBuildDate>Tue, 02 Feb 2016 01:00:39 +0100</lastBuildDate>
+    <link>/icoboard-wiki/</link>
+    <atom:link href="/icoboard-wiki/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 02 Feb 2016 01:08:53 +0100</pubDate>
+    <lastBuildDate>Tue, 02 Feb 2016 01:08:53 +0100</lastBuildDate>
     <generator>Jekyll v3.1.1</generator>
     
       <item>
@@ -15,8 +15,8 @@
 This is the reason why I decided to use &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; instead.&lt;/p&gt;
 </description>
         <pubDate>Mon, 01 Feb 2016 00:00:00 +0100</pubDate>
-        <link>/2016/02/01/jekyll-instead-of-mdwiki/</link>
-        <guid isPermaLink="true">/2016/02/01/jekyll-instead-of-mdwiki/</guid>
+        <link>/icoboard-wiki/2016/02/01/jekyll-instead-of-mdwiki/</link>
+        <guid isPermaLink="true">/icoboard-wiki/2016/02/01/jekyll-instead-of-mdwiki/</guid>
         
         
         <category>news</category>
