@@ -136,27 +136,27 @@
 </ul>
 
 <h2 id="building-the-example">Building the Example</h2>
-<p>After <a href="/installation/">installing</a> all needed tools it is time to run the example. Icoprog comes with an example to blink all the LED’s. Connect to your RPi, change to the <em>icoprog</em> directory and build the bitstream for the example (if it is not built already):</p>
+<p>After <a href="/icoboard-wiki/installation/">installing</a> all needed tools it is time to run the example. Icoprog comes with an example to blink all the LED’s. Connect to your RPi, change to the <em>icoprog</em> directory and build the bitstream for the example (if it is not built already):</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">make example.bin</code></pre></figure>
 
 <p>This <em>make</em> target is responsible for the following tasks:</p>
 
 <ul>
-  <li><a href="/glossary/#Synthesis">Synthesis</a> via <a href="/glossary/#yosys">yosys</a>: Takes <em>example.v</em> <a href="/glossary/#Verliog">Verilog</a> hardware description file as input and synthesizes it to <em>example.<a href="/glossary/#blif">blif</a></em></li>
-  <li><a href="/glossary/#place-and-route">Pick and Route</a> via <a href="/glossary/#yosys">arachne-pnr</a>: Takes <em>example.blif</em> and example.<a href="/glossary/#pcf">pcf</a> and generates a <a href="/glossary/#bitstream">Bitstream</a> in textual representation to <em>example.txt</em>, at this point you can still <em>cat</em> it and read it.</li>
-  <li>Generate <a href="/glossary/#bitstream">Bitstream</a> with <a href="/glossary/#icepack">icepack</a>: Takes the readable textual representation of the <a href="/glossary/#bitstream">Bitstream</a> (<em>example.txt</em>) and writes the <a href="/glossary/#bitstream">Bitstream</a> to <em>example.bin</em></li>
+  <li><a href="/icoboard-wiki/glossary/#Synthesis">Synthesis</a> via <a href="/icoboard-wiki/glossary/#yosys">yosys</a>: Takes <em>example.v</em> <a href="/icoboard-wiki/glossary/#Verliog">Verilog</a> hardware description file as input and synthesizes it to <em>example.<a href="/icoboard-wiki/glossary/#blif">blif</a></em></li>
+  <li><a href="/icoboard-wiki/glossary/#place-and-route">Pick and Route</a> via <a href="/icoboard-wiki/glossary/#yosys">arachne-pnr</a>: Takes <em>example.blif</em> and example.<a href="/icoboard-wiki/glossary/#pcf">pcf</a> and generates a <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a> in textual representation to <em>example.txt</em>, at this point you can still <em>cat</em> it and read it.</li>
+  <li>Generate <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a> with <a href="/icoboard-wiki/glossary/#icepack">icepack</a>: Takes the readable textual representation of the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a> (<em>example.txt</em>) and writes the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a> to <em>example.bin</em></li>
 </ul>
 
 <h2 id="flashing-the-example">Flashing the Example</h2>
-<p>Now that the <a href="/glossary/#bitstream">Bitstream</a> is available, it is time to flash it to the <a href="/glossary/#fpga">FPGA</a>:</p>
+<p>Now that the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a> is available, it is time to flash it to the <a href="/icoboard-wiki/glossary/#fpga">FPGA</a>:</p>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash">make example_flash</code></pre></figure>
 
-<p>This will invoke <a href="/glossary/#icoprog">icoprog</a> and flash <em>example.bin</em> to the icoBoard. You should now see the three LED’s on the board blinking.</p>
+<p>This will invoke <a href="/icoboard-wiki/glossary/#icoprog">icoprog</a> and flash <em>example.bin</em> to the icoBoard. You should now see the three LED’s on the board blinking.</p>
 
 <h2 id="dissecting-the-source">Dissecting the Source</h2>
-<p>Let’s take a deeper look into the two source files used to build the <a href="/glossary/#bitstream">Bitstream</a>.</p>
+<p>Let’s take a deeper look into the two source files used to build the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a>.</p>
 
 <h3 id="examplepcf">example.pcf</h3>
 <p>The physical constraints file contains the pin mappings to variables:</p>
@@ -166,10 +166,10 @@ set_io led1 C8
 set_io led2 F7
 set_io led3 K9</code></pre></figure>
 
-<p>The <em>led</em> variables are mapped to the pins they are connected to. Same goes with clk, which is the <a href="/glossary/#fpga">FPGA’s</a> clock signal. You can verify and look up the pin identifiers and what they are connected to in the <a href="http://downloads.amescon.com/icoboard.pdf">schematic</a>.</p>
+<p>The <em>led</em> variables are mapped to the pins they are connected to. Same goes with clk, which is the <a href="/icoboard-wiki/glossary/#fpga">FPGA’s</a> clock signal. You can verify and look up the pin identifiers and what they are connected to in the <a href="http://downloads.amescon.com/icoboard.pdf">schematic</a>.</p>
 
 <h3 id="examplev">example.v</h3>
-<p>This may be the point where you should go through some <a href="/glossary/#verliog">Verilog</a> tutorials first. But let’s look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen <a href="/glossary/#verliog">Verilog</a> before, so bear with me.</p>
+<p>This may be the point where you should go through some <a href="/icoboard-wiki/glossary/#verliog">Verilog</a> tutorials first. But let’s look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen <a href="/icoboard-wiki/glossary/#verliog">Verilog</a> before, so bear with me.</p>
 
 <figure class="highlight"><pre><code class="language-verilog" data-lang="verilog">module top (input clk, output reg led1, led2, led3);
   parameter COUNTER_BITS = 26;
@@ -396,7 +396,7 @@ State 7: LED's on: 1</code></pre></figure>
 <p>Same thing goes with decreasing until a point where the state changes so fast, that you can not follow it with your eye and all LED’s seem to be on all the time.</p>
 
 <h2 id="interpreting-the-graphical-representation">Interpreting the graphical representation</h2>
-<p>With <a href="/glossary/#yosys">yosys</a> you have the possibility to show a graphical representation of the design. You can use the <a href="/yosysjs/">interactive yosys console</a> to test this.</p>
+<p>With <a href="/icoboard-wiki/glossary/#yosys">yosys</a> you have the possibility to show a graphical representation of the design. You can use the <a href="/icoboard-wiki/yosysjs/">interactive yosys console</a> to test this.</p>
 
 <p>Create two files:</p>
 
