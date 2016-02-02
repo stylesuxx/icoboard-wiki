@@ -59,7 +59,7 @@ function fixFooter(footerHeight, footerMarginTop) {
     // console.log("$('body>.container').offset().top----"+$('body>.container').offset().top);
     // console.log("footerHeight---"+footerHeight);
     // console.log("footerMarginTop---"+footerMarginTop);
-    console.log(contentHeight);
+    //console.log(contentHeight);
     if (contentHeight < windowHeight) {
         $('footer').addClass('navbar-fixed-bottom');
     } else {
@@ -143,5 +143,5 @@ function generateContent() {
             'data-offset': '50'
         });*/
     }
-    console.log("myAffix!!!");
+    //console.log("myAffix!!!");
 }
