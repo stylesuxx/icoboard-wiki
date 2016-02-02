@@ -12,14 +12,14 @@ permalink: /examples/
 Here are some simple examples utilizing the *icoBoards* two buttons and three LED's.
 
 ### Physical constraints
-All Examples will use the same [*.pcf](/glossary/#pcf) file:
+All Examples will use the same [*.pcf]({{ site.baseurl }}/glossary/#pcf) file:
 
 <script src="https://gist.github.com/stylesuxx/98d91cac2c3b7dc0fcd6.js"></script>
 
 The pins are taken from the [icoBoard schematic](http://downloads.amescon.com/icoboard.pdf).
 
 ### Building and flashing
-All Examples may use the same Makefile for builing and flashing the [Bitstream](/glossary/#bitstream):
+All Examples may use the same Makefile for builing and flashing the [Bitstream]({{ site.baseurl }}/glossary/#bitstream):
 
 *TODO:* Add link to gist
 

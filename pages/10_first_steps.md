@@ -9,7 +9,7 @@ permalink: /first-steps/
 {:toc}
 
 ## Building the Example
-After [installing](/installation/) all needed tools it is time to run the example. Icoprog comes with an example to blink all the LED's. Connect to your RPi, change to the *icoprog* directory and build the bitstream for the example (if it is not built already):
+After [installing]({{ site.baseurl }}/installation/) all needed tools it is time to run the example. Icoprog comes with an example to blink all the LED's. Connect to your RPi, change to the *icoprog* directory and build the bitstream for the example (if it is not built already):
 
 
 {% highlight bash %}
@@ -18,21 +18,21 @@ make example.bin
 
 This *make* target is responsible for the following tasks:
 
-* [Synthesis](/glossary/#Synthesis) via [yosys](/glossary/#yosys): Takes *example.v* [Verilog](/glossary/#Verliog) hardware description file as input and synthesizes it to *example.[blif](/glossary/#blif)*
-* [Pick and Route](/glossary/#place-and-route) via [arachne-pnr](/glossary/#yosys): Takes *example.blif* and example.[pcf](/glossary/#pcf) and generates a [Bitstream](/glossary/#bitstream) in textual representation to *example.txt*, at this point you can still *cat* it and read it.
-* Generate [Bitstream](/glossary/#bitstream) with [icepack](/glossary/#icepack): Takes the readable textual representation of the [Bitstream](/glossary/#bitstream) (*example.txt*) and writes the [Bitstream](/glossary/#bitstream) to *example.bin*
+* [Synthesis]({{ site.baseurl }}/glossary/#Synthesis) via [yosys]({{ site.baseurl }}/glossary/#yosys): Takes *example.v* [Verilog]({{ site.baseurl }}/glossary/#Verliog) hardware description file as input and synthesizes it to *example.[blif]({{ site.baseurl }}/glossary/#blif)*
+* [Pick and Route]({{ site.baseurl }}/glossary/#place-and-route) via [arachne-pnr]({{ site.baseurl }}/glossary/#yosys): Takes *example.blif* and example.[pcf]({{ site.baseurl }}/glossary/#pcf) and generates a [Bitstream]({{ site.baseurl }}/glossary/#bitstream) in textual representation to *example.txt*, at this point you can still *cat* it and read it.
+* Generate [Bitstream]({{ site.baseurl }}/glossary/#bitstream) with [icepack]({{ site.baseurl }}/glossary/#icepack): Takes the readable textual representation of the [Bitstream]({{ site.baseurl }}/glossary/#bitstream) (*example.txt*) and writes the [Bitstream]({{ site.baseurl }}/glossary/#bitstream) to *example.bin*
 
 ## Flashing the Example
-Now that the [Bitstream](/glossary/#bitstream) is available, it is time to flash it to the [FPGA](/glossary/#fpga):
+Now that the [Bitstream]({{ site.baseurl }}/glossary/#bitstream) is available, it is time to flash it to the [FPGA]({{ site.baseurl }}/glossary/#fpga):
 
 {% highlight bash %}
 make example_flash
 {% endhighlight %}
 
-This will invoke [icoprog](/glossary/#icoprog) and flash *example.bin* to the icoBoard. You should now see the three LED's on the board blinking.
+This will invoke [icoprog]({{ site.baseurl }}/glossary/#icoprog) and flash *example.bin* to the icoBoard. You should now see the three LED's on the board blinking.
 
 ## Dissecting the Source
-Let's take a deeper look into the two source files used to build the [Bitstream](/glossary/#bitstream).
+Let's take a deeper look into the two source files used to build the [Bitstream]({{ site.baseurl }}/glossary/#bitstream).
 
 ### example.pcf
 The physical constraints file contains the pin mappings to variables:
@@ -44,10 +44,10 @@ set_io led2 F7
 set_io led3 K9
 {% endhighlight %}
 
-The *led* variables are mapped to the pins they are connected to. Same goes with clk, which is the [FPGA's](/glossary/#fpga) clock signal. You can verify and look up the pin identifiers and what they are connected to in the [schematic](http://downloads.amescon.com/icoboard.pdf).
+The *led* variables are mapped to the pins they are connected to. Same goes with clk, which is the [FPGA's]({{ site.baseurl }}/glossary/#fpga) clock signal. You can verify and look up the pin identifiers and what they are connected to in the [schematic](http://downloads.amescon.com/icoboard.pdf).
 
 ### example.v
-This may be the point where you should go through some [Verilog](/glossary/#verliog) tutorials first. But let's look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen [Verilog](/glossary/#verliog) before, so bear with me.
+This may be the point where you should go through some [Verilog]({{ site.baseurl }}/glossary/#verliog) tutorials first. But let's look at it anyway and see if we can find out what is happening. The following description is comming from someone who never has seen [Verilog]({{ site.baseurl }}/glossary/#verliog) before, so bear with me.
 
 {% highlight verilog %}
 module top (input clk, output reg led1, led2, led3);
@@ -294,7 +294,7 @@ This is in fact something you can now easily try for yourself. If you increase t
 Same thing goes with decreasing until a point where the state changes so fast, that you can not follow it with your eye and all LED's seem to be on all the time.
 
 ## Interpreting the graphical representation
-With [yosys](/glossary/#yosys) you have the possibility to show a graphical representation of the design. You can use the [interactive yosys console](/yosysjs/) to test this.
+With [yosys]({{ site.baseurl }}/glossary/#yosys) you have the possibility to show a graphical representation of the design. You can use the [interactive yosys console]({{ site.baseurl }}/yosysjs/) to test this.
 
 Create two files:
 
