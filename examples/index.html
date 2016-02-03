@@ -149,28 +149,46 @@
 <p>Here are some simple examples utilizing the <em>icoBoards</em> two buttons and three LED’s.</p>
 
 <h3 id="physical-constraints">Physical constraints</h3>
-<p>All Examples will use the same <a href="/icoboard-wiki/glossary/#pcf">*.pcf</a> file:</p>
+<p>All Examples will use the same <a href="/icoboard-wiki/glossary/#pcf">*.pcf</a> file, remember to comment in only those IO’s the example is actually using or <a href="/icoboard-wiki/glossary/#arachne-pnr">arachne-pnr</a> will fail:</p>
 
 <script src="https://gist.github.com/stylesuxx/98d91cac2c3b7dc0fcd6.js"></script>
 
 <p>The pins are taken from the <a href="http://downloads.amescon.com/icoboard.pdf">icoBoard schematic</a>.</p>
 
 <h3 id="building-and-flashing">Building and flashing</h3>
-<p>All Examples may use the same Makefile for builing and flashing the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a>:</p>
+<p>All Examples may use the same Makefile for building and flashing the <a href="/icoboard-wiki/glossary/#bitstream">Bitstream</a>:</p>
 
-<p><em>TODO:</em> Add link to gist</p>
+<script src="https://gist.github.com/stylesuxx/0bc913943fc388ee65da.js"></script>
+
+<p>To build and flash the example, simply run:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make example_flash</code></pre></figure>
+
+<p>To build and flash the Bitstream, do not forget to run the clean target when you have changed the content of <em>example.v</em> or <em>example.pcf</em>:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">make clean</code></pre></figure>
 
 <h2 id="basic">Basic</h2>
 
 <h3 id="light-led-with-button-press">Light LED with Button press</h3>
-<p>When pressing button <em>x</em> the LED <em>y</em> should light up.</p>
+<p>When pressing button <em>btn1</em> the LED <em>led1</em> should light up. When the button is released, the button should be off again.</p>
 
-<p><strong>Solution:</strong></p>
+<p><strong>Solution:</strong>
+<script src="https://gist.github.com/stylesuxx/89837e196d55a8866e58.js"></script>
+<em>Always</em> when the state of <em>btn1</em> changes, change the state of <em>led1</em> to the buttons current state.</p>
+
+<p>This is what the <em>yosys show command</em> yields for our hardware description:</p>
+
+<p><img src="http://i.imgur.com/E6r67Gz.png" alt="Example Dot file" /></p>
 
 <h3 id="toggle-led-with-button-press">Toggle LED with Button press</h3>
-<p>When button <em>x</em> is pressed, LED <em>y</em> should light up and stay lit, until button <em>x</em> is pressed again.</p>
+<p>When button <em>btn1</em> is pressed, LED <em>led1</em> should light up and stay lit, until button <em>btn1</em> is pressed again.</p>
 
-<p><strong>Solution:</strong></p>
+<p><strong>Solution:</strong>
+<script src="https://gist.github.com/stylesuxx/b90892deb67587cfa0c5.js"></script>
+In the <em>initial</em> block we initialize <em>led1</em> to be off. Every time the button <em>btn1</em> is pressed <em>led1</em> will takes its inverted state. When it was off before the button was pressed it will be on afterwards and vice versa.</p>
+
+<p><img src="http://i.imgur.com/8847fF6.png" alt="Example Dot file" /></p>
 
 <h3 id="four-led-states">Four LED states</h3>
 <p>When button <em>x</em> is pressed for the first time, LED <em>1</em>, should light up and stay lit until the button is pressed a second time, then LED <em>2</em> should light up. When pressing the button a third time, LED <em>3</em> should be on all other off. Pressing the button a fourth time, all LED’s should be off again.</p>
