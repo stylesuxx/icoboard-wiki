@@ -40,6 +40,9 @@ A tool from the [icestorm](#icestorm) tool suite to generate a [Bitstream](#bits
 ### icoprog
 A tool from the [icestorm](#icestorm) tool suite to flash a [Bitstream](#bitstram) to the [FPGA](#fpga).
 
+### icoTC
+The *ico tool chain* - is a [Verilog](#verilog) to [Bitstream](#bitstram) [FPGA](#fpga) tool chain.
+
 ### icestorm
 A [toolsuite](http://www.clifford.at/icestorm/) by Clifford Wolf and Mathias Lasser aimed at documenting the [Bitstream](#bitstram) of the [iCE40](#ice40) and providing tools for analyzing and creating [Bitstreams](#bitstram).
 
