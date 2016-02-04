@@ -55,12 +55,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-
-        
-          <li>
-        
-        <a href="/icoboard-wiki/">Home</a></li>
-
         
           
             
@@ -94,13 +88,6 @@
             
               <li>
             
-            <a href="/icoboard-wiki/verilog/"><span class="glyphicon "></span> Verilog</a></li>
-          
-        
-          
-            
-              <li>
-            
             <a href="/icoboard-wiki/glossary/"><span class="glyphicon "></span> Glossary</a></li>
           
         
@@ -117,8 +104,6 @@
         
           
         
-          
-        
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -126,39 +111,72 @@
 
 </header>
 
+
     <div id="main" class="container main">
       <div class="row">
   <div id="myArticle" class="col-sm-9">
     <div class="post-area post">
       <article>
         <ul id="markdown-toc">
-  <li><a href="#videos" id="markdown-toc-videos">Videos</a></li>
-  <li><a href="#electronics" id="markdown-toc-electronics">Electronics</a></li>
-  <li><a href="#unsorted" id="markdown-toc-unsorted">Unsorted</a></li>
+  <li><a href="#verilog" id="markdown-toc-verilog">Verilog</a>    <ul>
+      <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+      <li><a href="#tutorials" id="markdown-toc-tutorials">Tutorials</a></li>
+      <li><a href="#misc" id="markdown-toc-misc">Misc</a></li>
+    </ul>
+  </li>
+  <li><a href="#electronics" id="markdown-toc-electronics">Electronics</a>    <ul>
+      <li><a href="#basics" id="markdown-toc-basics">Basics</a></li>
+      <li><a href="#advanced" id="markdown-toc-advanced">Advanced</a></li>
+    </ul>
+  </li>
+  <li><a href="#datasheets" id="markdown-toc-datasheets">Datasheets</a></li>
 </ul>
 
-<h2 id="videos">Videos</h2>
+<h2 id="verilog">Verilog</h2>
 
+<h3 id="introduction">Introduction</h3>
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=gUsHwi4M4xE">EEVblog #496 - What Is An FPGA?</a></li>
-  <li><a href="https://www.youtube.com/watch?v=UvI-AMAtrvE">Computerphile - AND OR NOT - Logic Gates Explained</a></li>
-  <li><a href="https://www.youtube.com/watch?v=LAHEjnYDxvM">hackaday - How CMOS works Pt. 1</a></li>
-  <li><a href="https://www.youtube.com/watch?v=gtvmhRof3ww">hackaday - How CMOS works Pt. 2</a></li>
+  <li><a href="https://embeddedmicro.com/tutorials/mojo/verilog-operators">Operators</a> - explanation of all different operators available in verilog</li>
+  <li><a href="https://embeddedmicro.com/tutorials/mojo/synchronous-logic">Synchronous Logic</a> - synchronous logic explained in a video with in depth text</li>
+  <li><a href="http://www.mikrocontroller.net/articles/Verilog">Overall language overview in German</a> - a good overall verilog language overview in <em>german</em></li>
+</ul>
+
+<h3 id="tutorials">Tutorials</h3>
+<ul>
+  <li><a href="https://github.com/peepo/verilog_tutorials_BB">Verilog Tutorials for iCE40HX8K</a> - Adaptation of the <a href="https://embeddedmicro.com/tutorials/">Embedded Micro tutorial</a> for iCE40HX8K</li>
+  <li><a href="http://dangerousprototypes.com/docs/CPLD_Verilog_intro_1:_Light_a_LED">CPLD Verilog intro</a> - Dangerous Prototypes on how to light a LED on their CPLD platform, they have multiple basic tutorials</li>
+  <li><a href="http://www.ece.umd.edu/class/enee359a/verilog_tutorial.pdf">Verilog tutorial</a> - by <a href="http://asic-world.com">asci-world.com</a>; <em>asic world</em> has a lot of material regarding different HDL’s, but also very basic digital electronics tutorials.</li>
+  <li><a href="http://www.fpga4fun.com/">fpga4fun.com</a> - This is the tutorial heaven, definitely check that out if you are looking for inspiration what to do</li>
+</ul>
+
+<h3 id="misc">Misc</h3>
+<ul>
+  <li><a href="http://www.tcnj.edu/~hernande/Eng312/Verilog(R)_QRC__02.pdf">Quick Reference Sheet</a> - The quick reference sheet I use the most</li>
 </ul>
 
 <h2 id="electronics">Electronics</h2>
+
+<h3 id="basics">Basics</h3>
+
 <ul>
-  <li><a href="https://embeddedmicro.com/tutorials/beginning-electronics">embeddedmicro</a></li>
-  <li><a href="https://embeddedmicro.com/tutorials/beginning-electronics/transistors">embeddedmicro - Transistor</a></li>
-  <li><a href="https://embeddedmicro.com/tutorials/mojo-fpga-beginners-guide/what-is-an-fpga">embeddedmicro - What is an FPGA</a></li>
+  <li><a href="https://www.youtube.com/watch?v=gUsHwi4M4xE">EEVblog #496 - What Is An FPGA?</a> - EEVblog video about what an FPGA is, very enthusiastic guy.</li>
+  <li><a href="https://embeddedmicro.com/tutorials/mojo-fpga-beginners-guide/what-is-an-fpga">What is an FPGA </a> - <em>Embedded Micro</em> on what an <a href="/icoboard-wiki/glossary/#fpga">FPGA</a> is</li>
+  <li><a href="https://embeddedmicro.com/tutorials/beginning-electronics/transistors">Transistors</a> - <em>Embedded Micro</em> on what a Transistor is, they also have other basic electronics tutorials; definitely worth a read if you are catching up on the basics</li>
+  <li><a href="https://www.youtube.com/watch?v=UvI-AMAtrvE">AND OR NOT - Logic Gates Explained</a> - <em>Computerphile</em> video on logic gates</li>
 </ul>
 
-<h2 id="unsorted">Unsorted</h2>
+<h3 id="advanced">Advanced</h3>
+
 <ul>
-  <li>http://www.fpga4fun.com</li>
-  <li>http://www.ece.umd.edu/class/enee359a/verilog_tutorial.pdf</li>
-  <li>https://embeddedmicro.com/tutorials/mojo</li>
-  <li><a href="http://www.latticesemi.com/~/media/LatticeSemi/Documents/DataSheets/iCE/iCE40LPHXFamilyDataSheet.pdf">iCE40 Datasheet</a></li>
+  <li><a href="https://www.youtube.com/watch?v=LAHEjnYDxvM">hackaday - How CMOS works Pt. 1</a> - hackaday video about CMOS</li>
+  <li><a href="https://www.youtube.com/watch?v=gtvmhRof3ww">hackaday - How CMOS works Pt. 2</a> - - hackaday video about CMOS</li>
+</ul>
+
+<h2 id="datasheets">Datasheets</h2>
+
+<ul>
+  <li><a href="http://www.latticesemi.com/~/media/LatticeSemi/Documents/DataSheets/iCE/iCE40LPHXFamilyDataSheet.pdf">Lattice iCE40 LP/HX Family Datasheet</a></li>
+  <li><a href="http://www.latticesemi.com/~/media/LatticeSemi/Documents/TechnicalBriefs/SBTICETechnologyLibrary201504.pdf">Lattice iCE Technology Library</a></li>
 </ul>
 
       </article>
