@@ -129,6 +129,10 @@
       <li><a href="#four-led-states" id="markdown-toc-four-led-states">Four LED states</a></li>
     </ul>
   </li>
+  <li><a href="#intermediate" id="markdown-toc-intermediate">Intermediate</a>    <ul>
+      <li><a href="#dimming-a-led" id="markdown-toc-dimming-a-led">Dimming a LED</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="introduction">Introduction</h2>
@@ -177,9 +181,20 @@ In the <em>initial</em> block we initialize <em>led1</em> to be off. Every time 
 <p><img src="http://i.imgur.com/8847fF6.png" alt="Example Dot file" /></p>
 
 <h3 id="four-led-states">Four LED states</h3>
-<p>When button <em>x</em> is pressed for the first time, LED <em>1</em>, should light up and stay lit until the button is pressed a second time, then LED <em>2</em> should light up. When pressing the button a third time, LED <em>3</em> should be on all other off. Pressing the button a fourth time, all LED’s should be off again.</p>
+<p>When button <em>btn1</em> is pressed for the first time, <em>led1</em>, should light up and stay lit until the button is pressed a second time, then <em>led2</em> should light up. When pressing the button a third time, LED <em>led3</em> should be lit and all others off. Pressing the button a fourth time switches off all the LED’s again.</p>
 
-<p><strong>Solution:</strong></p>
+<p><strong>Solution:</strong>
+<script src="https://gist.github.com/stylesuxx/dba7a64ba853aff43aa6.js"></script>
+A <em>register</em> with three bits is initialized to zero. The first time the button is pressed, the register is set to <em>001</em> and output to the three LED’s every time the button is pushed, the register is shifted to the left by one bit, making the <em>1</em> bit wander to the left until it is all <em>0</em> again, then the process starts over.</p>
+
+<p><img src="http://i.imgur.com/LzGrskO.png" alt="Example Dot file" /></p>
+
+<h2 id="intermediate">Intermediate</h2>
+
+<h3 id="dimming-a-led">Dimming a LED</h3>
+<p><em>led1</em> should start dim and increase in brightness, until it has reached full brightness and should then start to dim again.</p>
+
+<p><strong>Solution</strong></p>
 
       </article>
     </div>
