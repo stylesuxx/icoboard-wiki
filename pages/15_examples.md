@@ -56,6 +56,17 @@ In the *initial* block we initialize *led1* to be off. Every time the button *bt
 ![Example Dot file](http://i.imgur.com/8847fF6.png)
 
 ### Four LED states
-When button *x* is pressed for the first time, LED *1*, should light up and stay lit until the button is pressed a second time, then LED *2* should light up. When pressing the button a third time, LED *3* should be on all other off. Pressing the button a fourth time, all LED's should be off again.
+When button *btn1* is pressed for the first time, *led1*, should light up and stay lit until the button is pressed a second time, then *led2* should light up. When pressing the button a third time, LED *led3* should be lit and all others off. Pressing the button a fourth time switches off all the LED's again.
 
 **Solution:**
+<script src="https://gist.github.com/stylesuxx/dba7a64ba853aff43aa6.js"></script>
+A *register* with three bits is initialized to zero. The first time the button is pressed, the register is set to *001* and output to the three LED's every time the button is pushed, the register is shifted to the left by one bit, making the *1* bit wander to the left until it is all *0* again, then the process starts over.
+
+![Example Dot file](http://i.imgur.com/LzGrskO.png)
+
+## Intermediate
+
+### Dimming a LED
+*led1* should start dim and increase in brightness, until it has reached full brightness and should then start to dim again.
+
+**Solution**
