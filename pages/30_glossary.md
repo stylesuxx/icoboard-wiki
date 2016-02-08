@@ -78,6 +78,9 @@ File extension for *physical constraints file*.
 ### Place and Route
 Place and route describes several processes where the [netlist](#netlist) elements are physically placed and mapped to the [FPGA](#fpga)'s physical resources.
 
+### PMOD
+Peripherial Module Interface, an open standard defined by [Digilent](digilentinc.com). A single PMOD port consists of 6 pins, one ground and one power pin and 4 data pins. The **icoBoard** comes with 4 double PMOD ports pre populated, this just means two PMOD ports on top of each other. Most PMOD boards use either single or double PMOD ports.
+
 ## R
 
 ### RPi
